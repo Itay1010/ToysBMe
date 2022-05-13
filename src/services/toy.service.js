@@ -13,9 +13,9 @@ export const toyService = {
     getEmptyToy
 }
 
-function query() {
+function query(filterBy) {
     // return axios.get(BASE_URL).then(res => res.data)
-    return storageService.query(STORAGE_KEY)
+    return storageService.query(STORAGE_KEY, filterBy)
 }
 function getById(toyId) {
     return storageService.get(STORAGE_KEY, toyId).then((toy) => {

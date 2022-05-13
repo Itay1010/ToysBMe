@@ -7,18 +7,25 @@ export const storageService = {
     remove,
 }
 
-function query(entityType, delay = 800) {
+function query(entityType, filterBy) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
-            // reject('OOOOPs')
+    entities = _filterToys(entities, filterBy)
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
             resolve(entities)
-        }, delay)   
+        }, 800)
     })
-    // return Promise.resolve(entities)
 }
 
+function _filterToys(toys, filterBy) {
+    console.log(filterBy.txt);
+    toys = toys.filter(toy => toy.name.toLowerCase().includes(filterBy.txt.toLowerCase()))
+    if (filterBy.label.length) toys = toys.filter(toy => toy.labels.some(label => filterBy.label.indexOf(label.toLowerCase()) >= 0))
+    if (filterBy.inStock !== '' && filterBy.inStock !== null) {
+        toys = toys.filter(toy => toy.inStock === JSON.parse(filterBy.inStock))
+    }
+    return toys
+}
 
 function get(entityType, entityId) {
     return query(entityType)

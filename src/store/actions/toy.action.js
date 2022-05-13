@@ -1,8 +1,8 @@
 import { toyService } from "../../services/toy.service.js";
 
 export function loadToys() {
-  return dispatch => {
-    return toyService.query()
+  return (dispatch, getState) => {
+    return toyService.query(getState().filterModule.filterBy)
       .then(toys => {
         console.log('loading toys');
         const action = {
@@ -13,7 +13,9 @@ export function loadToys() {
       })
       .catch(err => {
         console.error('Error:', err)
+        return err
       })
+      .then((res) => res)
   }
 }
 

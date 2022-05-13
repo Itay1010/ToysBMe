@@ -6,8 +6,9 @@ export function filterReducer(state = {
         label: []
     }
 }, action = {}) {
+    console.log('action', action)
     switch (action.type) {
-        case 'SET_FILTER':
+        case 'UPDATE_FILTER':
             return { ...state, filterBy: action.filterBy }
         case 'SET_PAGE':
             const { pageIdx } = action

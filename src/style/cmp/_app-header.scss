@@ -5,11 +5,10 @@
   background-color: $b;
   color: $w;
   padding: 0 $layoutPadding;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 2vmin);
 
   h1 {
     position: relative;
-    margin-block: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
