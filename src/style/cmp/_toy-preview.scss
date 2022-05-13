@@ -1,0 +1,16 @@
+.toy-preview {
+    max-width: 230px;
+    border: 2px solid $g-1;
+    border-radius: 5px;
+    padding: 10px;
+
+    .btn {
+        font-size: 1em;
+        margin-inline: 5px;
+        background-color: $clr-secondary;
+
+        &:hover {
+            background-color: $clr-primary;
+        }
+    }
+}

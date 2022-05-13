@@ -1,0 +1,15 @@
+@import 'setup/variables';
+@import 'setup/functions';
+
+@import 'basic/basic';
+@import 'basic/layout';
+
+@import 'page/root-cmp';
+@import 'page/toy-app';
+@import 'page/toy-details';
+
+@import 'cmp/app-header';
+@import 'cmp/toy-list';
+@import 'cmp/toy-preview';
+@import 'cmp/toy-filter';
+@import 'cmp/multi-select';

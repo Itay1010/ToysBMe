@@ -1,0 +1,18 @@
+.toy-filter {
+    display: flex;
+    justify-content: center;
+    margin-block: 20px;
+    gap: 10px;
+
+    button {
+        background-color: $clr-secondary;
+        border: none;
+        padding: 5px 10px;
+        color: $w;
+        border-radius: 4px;
+        
+        &:hover {
+            background-color: $clr-secondary-1;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.app {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+    // grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+
+    >* {
+        grid-column: 2;
+    }
+
+    >*.full {
+        grid-column: 1 / -1;
+    }
+
+    // text-align: center;
+}

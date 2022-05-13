@@ -1,0 +1,24 @@
+.toy-details {
+    text-align: center;
+
+    h1 {
+        margin-block-start: 20px;
+    }
+
+    .review-container {
+        text-align: initial;
+        margin-block: 20px;
+
+        &>* {
+            margin-block-end: 20px;
+        }
+
+        .review-preview {
+            &>* {
+                margin: 15px;
+            }
+
+            border-block-end: 1px solid $g-1;
+        }
+    }
+}

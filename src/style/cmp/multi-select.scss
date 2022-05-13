@@ -1,0 +1,41 @@
+.multi-select {
+    position: relative;
+
+    #select-toggle {
+        position: absolute;
+        display: none;
+        cursor: pointer;
+    }
+
+    .select-toggle {
+        cursor: pointer;
+    }
+
+    input:checked ~ .options-container{
+        display: grid;
+    }
+
+    .options-container {
+        position: absolute;
+        display: none;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        background-color: $w;
+        border: 1px solid $g-1;
+        border-radius: 5px;
+        padding: 10px;
+        gap: 2px;
+        left: 0;
+
+        
+
+
+        // button {
+        //     background-color: transparent;
+        //     // border-radius: 50%;
+        //     aspect-ratio: 1 / 1;
+        //     border: 1px solid black;
+        // }
+    }
+}

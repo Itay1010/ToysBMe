@@ -1,0 +1,26 @@
+// Layout
+$layoutPadding: 20px;
+
+
+
+// Colors
+$clr-primary: #C23321;
+$clr-primary1: lighten($clr-primary, 10%);
+$clr-primary-1: darken($clr-primary, 5%);
+
+$clr-secondary: #338be4;
+$clr-secondary1: lighten($clr-secondary, 10%);
+$clr-secondary-1: darken($clr-secondary, 10%);
+
+$b: #282c34;
+
+$g: #C1B0A6;
+$g-1: darken($g, 10%);
+$g-2: darken($g, 20%);
+$g1: lighten($g, 10%);
+$g2: lighten($g, 15%);
+
+
+$w: #fafafa;
+$w1: lighten($w, 10%);
+$w-1: darken($w, 10%);
