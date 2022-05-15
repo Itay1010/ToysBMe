@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 import { ToyFilter } from "../cmps/toy-filter.jsx"
 import { ToyList } from "../cmps/toy-list.jsx"
 import { setFilter } from "../store/actions/filter.action.js"
@@ -24,6 +25,7 @@ class _ToyApp extends React.Component {
     render() {
         return <main>
             <ToyFilter onSetFilter={this.onSetFilter} />
+            <Link to='/toy/edit/' className="btn">Add</Link>
             <ToyList toys={this.props.toys} deleteToy={this.props.deleteToy} />
         </main>
     }

@@ -6,7 +6,7 @@ import { toyService } from "../services/toy.service"
 export function _ToyDetails({ match, history }) {
 
     const [toy, setToy] = useState(() => {
-        toyService.getById(match.params.toyId)
+        const initialState = toyService.getById(match.params.toyId)
             .then((resToy) => setToy(resToy))
     })
 

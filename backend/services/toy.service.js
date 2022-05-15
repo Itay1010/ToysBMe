@@ -74,7 +74,7 @@ function _getEmptyToy(name = 'Playstation', price = 1000) {
         _id: utilService.makeId(),
         name,
         price,
-        labels: ['Doll', 'Battery Powered'],
+        labels: ['doll', 'battery powered'],
         createdAt: Date.now(),
         inStock: true
     }

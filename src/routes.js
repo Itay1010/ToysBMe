@@ -1,12 +1,13 @@
 import { Home } from "./pages/home.jsx"
 import { About } from "./pages/about.jsx"
+import { DashBoard } from "./pages/dashboard.jsx"
 import { ToyApp } from "./pages/toy-app.jsx"
 import { ToyDetails } from "./pages/toy-details.jsx"
 import { ToyEdit } from "./pages/toy-edit.jsx"
 
 export const routes = [
     {
-        path: '/toy/edit/:toyId',
+        path: '/toy/edit/:toyId?',
         component: ToyEdit
     },
     {
@@ -20,6 +21,10 @@ export const routes = [
     {
         path: '/about',
         component: About
+    },
+    {
+        path: '/dashboard',
+        component: DashBoard
     },
     {
         path: '/',

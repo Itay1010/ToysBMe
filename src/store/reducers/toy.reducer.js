@@ -1,6 +1,7 @@
 
 const initialState = {
     toys: [],
+    labels: ['adult', 'comic', 'battery powered', 'baby', 'puzzle', 'video games']
 }
 
 export function toyReducer(state = initialState, action) {

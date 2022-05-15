@@ -4,7 +4,7 @@ import { Switch, Route, NavLink } from "react-router-dom"
 import { routes } from "./routes"
 import { loadToys } from './store/actions/toy.action.js'
 
-function _App(props) {
+function _App() {
   return (
     <div className="app">
       <header className="app-header full">
@@ -13,6 +13,7 @@ function _App(props) {
           <NavLink to="/" exact>Home</NavLink>
           <NavLink to="/toy" exact>Toys</NavLink>
           <NavLink to="/about" exact>About</NavLink>
+          <NavLink to="/dashboard" exact>Dashboard</NavLink>
         </nav>
       </header>
       <main>

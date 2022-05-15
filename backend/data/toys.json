@@ -4,15 +4,15 @@
     "name": "Talking Dall",
     "price": 168,
     "labels": [
-      "Doll",
-      "Battery Powered",
-      "Baby"
+      "doll",
+      "battery powered",
+      "baby"
     ],
     "createdAt": 1652548737562,
     "inStock": true,
     "reviews": [
       {
-        "_id": "1jCMQp",
+        "_id": "dyEnRT",
         "title": "Best toy ever!",
         "description": "I bought this for my daughter and she loved it.",
         "creator": {
@@ -20,7 +20,7 @@
         }
       },
       {
-        "_id": "yVeqpU",
+        "_id": "N4W36r",
         "title": "Not so good",
         "description": "broke after two weeks",
         "creator": {
@@ -34,27 +34,15 @@
     "name": "Baseball Bat",
     "price": 200,
     "labels": [
-      "Doll",
-      "Battery Powered",
-      "Baby"
+      "doll",
+      "battery powered",
+      "baby"
     ],
     "createdAt": 1652548717592,
-    "inStock": true
-  },
-  {
-    "_id": "t103",
-    "name": "Funko Pop",
-    "price": 168,
-    "labels": [
-      "Doll",
-      "Battery Powered",
-      "Baby"
-    ],
-    "createdAt": 1651548915792,
-    "inStock": false,
+    "inStock": true,
     "reviews": [
       {
-        "_id": "dYLp5b",
+        "_id": "LVUYGK",
         "title": "Best toy ever!",
         "description": "I bought this for my daughter and she loved it.",
         "creator": {
@@ -62,7 +50,37 @@
         }
       },
       {
-        "_id": "CBkbd5",
+        "_id": "2KwYML",
+        "title": "Not so good",
+        "description": "broke after two weeks",
+        "creator": {
+          "username": "Rachel"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "t103",
+    "name": "Funko Pop",
+    "price": 168,
+    "labels": [
+      "doll",
+      "battery powered",
+      "baby"
+    ],
+    "createdAt": 1651548915792,
+    "inStock": false,
+    "reviews": [
+      {
+        "_id": "2VayBE",
+        "title": "Best toy ever!",
+        "description": "I bought this for my daughter and she loved it.",
+        "creator": {
+          "username": "Monica R."
+        }
+      },
+      {
+        "_id": "kmPeGw",
         "title": "Not so good",
         "description": "broke after two weeks",
         "creator": {

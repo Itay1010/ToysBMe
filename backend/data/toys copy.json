@@ -3,7 +3,7 @@
         "_id": "t101",
         "name": "Talking Doll",
         "price": "168",
-        "labels": ["Doll", "Battery Powered", "Baby"],
+        "labels": ["doll", "battery powered", "baby"],
         "createdAt": 1652548737562,
         "inStock": true
     },
@@ -11,7 +11,7 @@
         "_id": "t102",
         "name": "Baseball Bat",
         "price": "200",
-        "labels": ["Doll", "Battery Powered", "Baby"],
+        "labels": ["doll", "battery powered", "baby"],
         "createdAt": 1652548717592,
         "inStock": true
     },
@@ -19,7 +19,7 @@
         "_id": "t103",
         "name": "Funko Pop",
         "price": "168",
-        "labels": ["Doll", "Battery Powered", "Baby"],
+        "labels": ["doll", "battery powered", "baby"],
         "createdAt": 1651548915792,
         "inStock": false
     }

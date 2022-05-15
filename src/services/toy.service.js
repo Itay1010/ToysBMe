@@ -48,20 +48,19 @@ function remove(toyId) {
 
 function save(toy) {
     if (toy._id) {
-        return axios.put(BASE_URL + toy._id, toy)
+        return axios.put(BASE_URL + toy._id, toy).then(res => res.data)
     } else {
         // when switching to backend - remove the next line
         // toy.owner = userService.getLoggedinUser()
-        return axios.post(BASE_URL, toy)
+        return axios.post(BASE_URL, toy).then(res => res.data)
     }
 }
 
 function getEmptyToy() {
     return {
-        _id: utilService.makeId(),
         name: 'Playstation',
         price: 1000,
-        labels: ['Doll', 'Battery Powered'],
+        labels: ['doll', 'battery powered'],
         createdAt: Date.now(),
         inStock: true
     }
@@ -69,15 +68,15 @@ function getEmptyToy() {
 
 // TEST DATA
 // storageService.post(STORAGE_KEY,
-//     { _id: utilService.makeId(), name: 'Talking Doll', price: 168, labels: ["Doll", "Battery Powered", "Baby"], createdAt: Date.now(), inStock: true })
+//     { _id: utilService.makeId(), name: 'Talking doll', price: 168, labels: ["doll", "battery powered", "baby"], createdAt: Date.now(), inStock: true })
 //     .then(x => console.log(x))
 
 // storageService.post(STORAGE_KEY,
-//     { _id: utilService.makeId(), name: 'Baseball Bat', price: 200, labels: ["Doll", "Battery Powered", "Baby"], createdAt: Date.now(), inStock: true })
+//     { _id: utilService.makeId(), name: 'Baseball Bat', price: 200, labels: ["doll", "battery powered", "baby"], createdAt: Date.now(), inStock: true })
 //     .then(x => console.log(x))
 
 // storageService.post(STORAGE_KEY,
-//     { _id: utilService.makeId(), name: 'Funko Pop', price: 168, labels: ["Doll", "Battery Powered", "Baby"], createdAt: Date.now(), inStock: true })
+//     { _id: utilService.makeId(), name: 'Funko Pop', price: 168, labels: ["doll", "battery powered", "baby"], createdAt: Date.now(), inStock: true })
 //     .then(x => console.log(x))
 
 

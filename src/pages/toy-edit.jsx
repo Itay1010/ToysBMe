@@ -1,13 +1,19 @@
 import React from "react"
 import { connect } from "react-redux"
 import { toyService } from "../services/toy.service.js"
-import { deleteToy, editToy, saveToy } from "../store/actions/toy.action.js"
+import { deleteToy, saveToy } from "../store/actions/toy.action.js"
+import { EditForm } from "./edit-form.jsx";
 
 class _ToyEdit extends React.Component {
     state = {
-        toy: null
+        toy: toyService.getEmptyToy()
     }
+
     componentDidMount() {
+        if (!this.props.match.params.toyId) {
+            console.log('new toy')
+            return
+        }
         toyService.getById(this.props.match.params.toyId)
             .then((resToy) => this.setState({ toy: resToy }))
     }
@@ -23,38 +29,27 @@ class _ToyEdit extends React.Component {
         this.setState((prevState) => ({ toy: { ...prevState.toy, [field]: value } }))
     }
 
-    onSubmit() {
-        this.props.saveToy(this.state.toy)
+    onSubmit = () => {
+        // this.props.saveToy(this.state.toy)
         this.props.history.push('/toy')
+
     }
 
     render() {
         if (!this.state.toy) return <h1>Loading...</h1>
-        const { toy: { name, price, inStock } } = this.state
-        return <form onSubmit={(ev) => {
-            ev.preventDefault()
-            this.onSubmit()
-        }}>
-            <h2>Name:</h2><input type="text" name="name" value={name} onChange={(ev) => this.handleInput(ev)} />
-            <h2>Price:</h2><input type="number" name="price" value={price} onChange={(ev) => this.handleInput(ev)} />
-            <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <h2>In Stock:</h2>
-                <input type="checkbox" name="inStock" id="" checked={inStock} onChange={(ev) => this.handleInput(ev)} />
-            </section>
-            <button>Save</button>
-        </form>
+        const { toy } = this.state
+        return <EditForm toy={toy} onInput={this.handleInput} onSubmit={this.onSubmit} />
     }
 }
 
 const mapStateToProps = (storeState) => {
     return {
-        // toys: storeState.toyModule.toys
+        toys: storeState.toyModule.toys
     }
 }
 
 const mapDispatchToProps = {
     deleteToy,
-    editToy,
     saveToy
 }
 
