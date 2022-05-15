@@ -11,8 +11,7 @@ module.exports = {
 }
 
 function query(filterBy) {
-    var toys = gToys
-    if (filterBy.txt) toys = _filterToys(toys, filterBy)
+    const toys = _filterToys(gToys, filterBy)
     return Promise.resolve(toys)
 }
 
@@ -27,7 +26,6 @@ function getById(toyId) {
             console.log('error thrown')
             reject(err)
         }
-
     })
 }
 
@@ -47,9 +45,7 @@ function save(data) {
         return _saveToysToFile()
     } else {
         console.log('creating new')
-        const toy = getEmptyToy()
-        toy.name = data.name
-        toy.price = data.price
+        const toy = _getEmptyToy(data.name, data.price)
         gToys.unshift(toy)
         return _saveToysToFile().then(() => toy)
     }
@@ -73,17 +69,16 @@ function _addReviews(toy) {
     ]
     return toy
 }
-function getEmptyToy() {
+function _getEmptyToy(name = 'Playstation', price = 1000) {
     return {
         _id: utilService.makeId(),
-        name: 'Playstation',
-        price: 1000,
+        name,
+        price,
         labels: ['Doll', 'Battery Powered'],
         createdAt: Date.now(),
         inStock: true
     }
 }
-
 
 function _filterToys(toys, filterBy) {
     toys = toys.filter(toy => toy.name.toLowerCase().includes(filterBy.txt.toLowerCase()))

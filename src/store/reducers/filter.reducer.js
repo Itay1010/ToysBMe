@@ -2,7 +2,7 @@
 export function filterReducer(state = {
     filterBy: {
         txt: '',
-        inStock: null,
+        inStock: '',
         label: []
     }
 }, action = {}) {

@@ -4,18 +4,21 @@ export function loadToys() {
   return (dispatch, getState) => {
     return toyService.query(getState().filterModule.filterBy)
       .then(toys => {
-        console.log('loading toys');
+        console.log('loading toys')
         const action = {
           type: 'SET_TOYS',
           toys
         }
         dispatch(action)
       })
+      .then(res => {
+        console.log(res)
+        return res
+      })
       .catch(err => {
         console.error('Error:', err)
         return err
       })
-      .then((res) => res)
   }
 }
 

@@ -1,20 +1,38 @@
 [
   {
     "_id": "t101",
-    "name": "Talking Doll",
-    "price": "168",
+    "name": "Talking Dall",
+    "price": 168,
     "labels": [
       "Doll",
       "Battery Powered",
       "Baby"
     ],
     "createdAt": 1652548737562,
-    "inStock": true
+    "inStock": true,
+    "reviews": [
+      {
+        "_id": "1jCMQp",
+        "title": "Best toy ever!",
+        "description": "I bought this for my daughter and she loved it.",
+        "creator": {
+          "username": "Monica R."
+        }
+      },
+      {
+        "_id": "yVeqpU",
+        "title": "Not so good",
+        "description": "broke after two weeks",
+        "creator": {
+          "username": "Rachel"
+        }
+      }
+    ]
   },
   {
     "_id": "t102",
     "name": "Baseball Bat",
-    "price": "200",
+    "price": 200,
     "labels": [
       "Doll",
       "Battery Powered",
@@ -26,13 +44,31 @@
   {
     "_id": "t103",
     "name": "Funko Pop",
-    "price": "168",
+    "price": 168,
     "labels": [
       "Doll",
       "Battery Powered",
       "Baby"
     ],
     "createdAt": 1651548915792,
-    "inStock": false
+    "inStock": false,
+    "reviews": [
+      {
+        "_id": "dYLp5b",
+        "title": "Best toy ever!",
+        "description": "I bought this for my daughter and she loved it.",
+        "creator": {
+          "username": "Monica R."
+        }
+      },
+      {
+        "_id": "CBkbd5",
+        "title": "Not so good",
+        "description": "broke after two weeks",
+        "creator": {
+          "username": "Rachel"
+        }
+      }
+    ]
   }
 ]

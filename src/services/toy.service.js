@@ -1,9 +1,11 @@
 
-import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import axios from 'axios'
+// import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'toyDB'
+const BASE_URL = (process.env.NODE_ENV === 'production')
+    ? '/api/toy'
+    : 'http://localhost:3030/api/toy/'
 
 export const toyService = {
     query,
@@ -14,46 +16,54 @@ export const toyService = {
 }
 
 function query(filterBy) {
-    // return axios.get(BASE_URL).then(res => res.data)
-    return storageService.query(STORAGE_KEY, filterBy)
+    const filterParams = new URLSearchParams(filterBy)
+    return axios.get(BASE_URL, { params: filterParams }).then(res => res.data)
 }
+
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId).then((toy) => {
-        toy.reviews = [
-            {
-                _id: utilService.makeId(),
-                title: 'Best toy ever!',
-                description: `I bought this for my daughter and she loved it.`,
-                creator: { username: `Monica R.` }
-            },
-            {
-                _id: utilService.makeId(),
-                title: 'Not so good',
-                description: `broke after two weeks`,
-                creator: { username: `Rachel` }
-            }
-        ]
-        return toy
-    })
+    return axios.get(BASE_URL + toyId)
+        .then(({ data }) => data)
+        .then((toy) => {
+            toy.reviews = [
+                {
+                    _id: utilService.makeId(),
+                    title: 'Best toy ever!',
+                    description: `I bought this for my daughter and she loved it.`,
+                    creator: { username: `Monica R.` }
+                },
+                {
+                    _id: utilService.makeId(),
+                    title: 'Not so good',
+                    description: `broke after two weeks`,
+                    creator: { username: `Rachel` }
+                }
+            ]
+            return toy
+        })
 }
+
 function remove(toyId) {
-    // return Promise.reject('Not now!')
-    return storageService.remove(STORAGE_KEY, toyId)
+    return axios.delete(BASE_URL + toyId)
 }
+
 function save(toy) {
     if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
+        return axios.put(BASE_URL + toy._id, toy)
     } else {
         // when switching to backend - remove the next line
         // toy.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, toy)
+        return axios.post(BASE_URL, toy)
     }
 }
 
 function getEmptyToy() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        _id: utilService.makeId(),
+        name: 'Playstation',
+        price: 1000,
+        labels: ['Doll', 'Battery Powered'],
+        createdAt: Date.now(),
+        inStock: true
     }
 }
 

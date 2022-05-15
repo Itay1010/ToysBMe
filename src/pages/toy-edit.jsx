@@ -30,7 +30,7 @@ class _ToyEdit extends React.Component {
 
     render() {
         if (!this.state.toy) return <h1>Loading...</h1>
-        const { toy: { name, _id, labels, price, inStock } } = this.state
+        const { toy: { name, price, inStock } } = this.state
         return <form onSubmit={(ev) => {
             ev.preventDefault()
             this.onSubmit()
