@@ -9,7 +9,7 @@ export const storageService = {
 
 function query(entityType, filterBy) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    entities = _filterToys(entities, filterBy)
+    if(filterBy) entities = _filterToys(entities, filterBy)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(entities)
