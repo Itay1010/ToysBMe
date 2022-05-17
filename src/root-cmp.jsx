@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { Switch, Route, NavLink } from "react-router-dom"
 import { routes } from "./routes"
 import { loadToys } from './store/actions/toy.action.js'
+import { UserMsg } from "./cmps/user-msg.jsx"
 
 function _App() {
   return (
     <div className="app">
+      <UserMsg />
       <header className="app-header full">
         <h1>Toys B Me</h1>
         <nav>
@@ -18,12 +20,12 @@ function _App() {
       </header>
       <main>
         <Switch>
-          {routes.map((route) => <Route key={route.path} exact path={route.path} component={route.component}/>)}
+          {routes.map((route) => <Route key={route.path} exact path={route.path} component={route.component} />)}
         </Switch>
       </main>
-    <footer>
-      <h1>hello from footer</h1>
-    </footer>
+      <footer>
+        <h1>hello from footer</h1>
+      </footer>
     </div>
   )
 }

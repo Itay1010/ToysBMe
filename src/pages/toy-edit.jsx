@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js";
 import { toyService } from "../services/toy.service.js"
 import { deleteToy, saveToy } from "../store/actions/toy.action.js"
 import { EditForm } from "./edit-form.jsx";
@@ -18,10 +19,6 @@ class _ToyEdit extends React.Component {
             .then((resToy) => this.setState({ toy: resToy }))
     }
 
-    componentWillUnmount(nextProps, nextState) {
-        this.props.saveToy(this.state.toy)
-    }
-
     handleInput = (ev) => {
         const field = ev.target.name
         const { value } = ev.target
@@ -30,15 +27,23 @@ class _ToyEdit extends React.Component {
     }
 
     onSubmit = () => {
-        // this.props.saveToy(this.state.toy)
+        try {
+            this.props.saveToy(this.state.toy)
+           
+        } catch(err) {
+            console.log(err)
+        }
         this.props.history.push('/toy')
+    }
 
+    onDelete = () => {
+        
     }
 
     render() {
         if (!this.state.toy) return <h1>Loading...</h1>
         const { toy } = this.state
-        return <EditForm toy={toy} onInput={this.handleInput} onSubmit={this.onSubmit} />
+        return <EditForm toy={toy} onInput={this.handleInput} onSubmit={this.onSubmit} onDelete={toyService.remove} />
     }
 }
 

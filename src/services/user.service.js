@@ -1,55 +1,62 @@
+import Axios from 'axios'
+import { showSuccessMsg, showErrorMsg, showUserMsg } from './event-bus.service.js'
 import { storageService } from './async-storage.service.js'
+import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'userDB'
-const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
+const axios = Axios.create({
+    withCredentials: true
+})
+
+const STORAGE_KEY = 'loggedinUser'
+const ENDPOINT = 'auth/'
 
 export const userService = {
     login,
     logout,
     signup,
-    getLoggedinUser,
-    updateBalance
+    getLoggedinUser
 }
 
 window.us = userService
 
-function login(credentials) {
-    return storageService.query(STORAGE_KEY).then(users => {
-        const user = users.find(user => user.username === credentials.username &&
-            user.password === credentials.password)
-            
-        if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-
-        return user
-    })
-
-
+async function login(credentials) {
+    // console.log('login - credentials', {data: credentials})
+    try {
+        const res = await httpService.post(ENDPOINT + 'login', credentials)
+        console.log('login - res', res)
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(res))
+        showSuccessMsg(`Welcome ${res.username}`)
+        return res
+    } catch (error) {
+        console.log(error)
+        showErrorMsg('Something went wrong')
+        throw error
+    }
 }
-function signup(userInfo) {
-    const user = {...userInfo, balance: 10000}
-    return storageService.post(STORAGE_KEY, user)
-        .then((user) => {
-            sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-            return user
-        })
-}
-function updateBalance(diff) {
 
-    const user = userService.getLoggedinUser()
-    user.balance += diff
-    return storageService.put(STORAGE_KEY, user)
-        .then((user) => {
-            sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-            return user.balance
-        })
+async function signup(userInfo) {
+    const user = { ...userInfo }
+    const res = await httpService.post(ENDPOINT, user)
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user))
+    return user
 }
-function logout() {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
-    return Promise.resolve()
+
+async function logout() {
+    try {
+        const res = await httpService.post(ENDPOINT + 'logout')
+        sessionStorage.setItem(STORAGE_KEY, null)
+        console.log('logged out', res)
+        showSuccessMsg('Logged out')
+        return res
+    } catch (error) {
+        console.log('logout - error', error)
+        showErrorMsg('Something went wrong')
+
+    }
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY))
 }
 
 // Test Data

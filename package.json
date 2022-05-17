@@ -18,7 +18,8 @@
     "react-transition-group": "^4.4.2",
     "redux-thunk": "^2.4.1",
     "sass": "^1.51.0",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "redux-devtools-extension": "^2.13.9"
   },
   "scripts": {
     "start": "react-scripts start --watch -o style/main scss",

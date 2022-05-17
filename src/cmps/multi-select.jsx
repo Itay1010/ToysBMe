@@ -7,9 +7,9 @@ function _MultiSelect({ onSetFilter, labels }) {
         <input id="select-toggle" type="checkbox" />
         <label htmlFor="select-toggle" className="select-toggle">...</label>
         <div className="options-container" >
-            {labels && labels.map(label => {
-                return <React.Fragment>
-                    <input key={label} type="checkbox" value={label} name="label" onChange={(ev) => {
+            {labels && labels.map((label, idx) => {
+                return <React.Fragment key={label}>
+                    <input type="checkbox" value={label} name="label" onChange={(ev) => {
                         onSetFilter(ev)
                     }} /> <h5>{label}</h5>
                 </React.Fragment>

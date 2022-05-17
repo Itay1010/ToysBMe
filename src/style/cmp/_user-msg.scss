@@ -1,0 +1,23 @@
+.user-msg {
+    position: fixed;
+    display: flex;
+    right: 0;
+    bottom: 20px;
+    padding: 20px;
+    border-radius: 20px 0 0 20px;
+    background-color: $clr-primary;
+    box-shadow: 0 0 black;
+
+    &.success {
+        background-color: forestgreen;
+        color: $w;
+    }
+    &.danger {
+        background-color: crimson;
+        color: $w;
+    }
+
+    &>* {
+        margin-inline: 10px;
+    }
+}

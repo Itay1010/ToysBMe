@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { showUserMsg } from "../services/event-bus.service";
 // import { toyService } from "../services/toy.service";
 
-export function EditForm({ toy, onInput, onSubmit }) {
+export function EditForm({ toy, onInput, onSubmit, onDelete }) {
 
     if (!toy) return <React.Fragment></React.Fragment>
-    const { name, price, inStock } = toy
+    const { name, price, inStock, _id } = toy
     return (
         < Formik
             onSubmit={values => {
@@ -40,6 +41,7 @@ export function EditForm({ toy, onInput, onSubmit }) {
                         </label>
                     </section>
                     <button type="submit" disabled={isSubmitting}>Save</button>
+                    <button className="btn" onClick={() => { onDelete(_id) }}>X</button>
                     <h1>{Object.values(errors)}</h1>
                 </Form>
             )

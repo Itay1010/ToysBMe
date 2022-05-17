@@ -1,12 +1,13 @@
 import React from "react"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
-import { connect } from "react-redux";
-
+import { connect } from 'react-redux';
+import { loadToys } from '../store/actions/toy.action.js'
 //chart init
 ChartJS.register(ArcElement, Tooltip, Legend)
-function _DashBoard({ labels, toys }) {
-    const labelMap = mapLabels(toys.map(toy => toy.labels).flat())
+function _DashBoard({ labels, toys, loadToys }) {
+    if (!toys) loadToys()
+    const labelMap = mapLabels(labels, toys.map(toy => toy.labels).flat())
     console.log('_DashBoard - labelMap', Object.values(labelMap))
     const data = {
         labels,
@@ -49,12 +50,16 @@ const mapStateToProps = (storeState) => {
     }
 }
 
+const mapDispatchToProps = {
+    loadToys
+}
+
 export const DashBoard = connect(
     mapStateToProps
 )(_DashBoard)
 
 
-function mapLabels(toyLabels) {
+function mapLabels(labels, toyLabels) {
     return toyLabels.reduce((acc, label) => {
         if (!acc[label]) acc[label] = 0;
         acc[label]++
