@@ -29,21 +29,21 @@ class _ToyEdit extends React.Component {
     onSubmit = () => {
         try {
             this.props.saveToy(this.state.toy)
-           
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
         this.props.history.push('/toy')
     }
-
-    onDelete = () => {
-        
+    
+    onDelete = (id) => {
+        this.props.deleteToy(id)
+        this.props.history.push('/toy')
     }
 
     render() {
         if (!this.state.toy) return <h1>Loading...</h1>
         const { toy } = this.state
-        return <EditForm toy={toy} onInput={this.handleInput} onSubmit={this.onSubmit} onDelete={toyService.remove} />
+        return <EditForm toy={toy} onInput={this.handleInput} onSubmit={this.onSubmit} onDelete={this.onDelete} />
     }
 }
 

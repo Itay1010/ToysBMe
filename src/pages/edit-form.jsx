@@ -40,8 +40,10 @@ export function EditForm({ toy, onInput, onSubmit, onDelete }) {
                             <input type="checkbox" name="inStock" id="" checked={inStock} onChange={onInput} />
                         </label>
                     </section>
-                    <button type="submit" disabled={isSubmitting}>Save</button>
-                    <button className="btn" onClick={() => { onDelete(_id) }}>X</button>
+                    <button className="btn" onClick={(ev) => {
+                        onDelete(_id)
+                    }}>X</button>
+                    <button className="btn" type="submit" disabled={isSubmitting}>Save</button>
                     <h1>{Object.values(errors)}</h1>
                 </Form>
             )

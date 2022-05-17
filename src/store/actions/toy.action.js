@@ -40,13 +40,15 @@ export function loadToys() {
 }
 
 export function saveToy(toy) { // Action Creator
+  console.log('saveToy - toy', toy)
   if (toy.reviews) delete toy.reviews
+  console.log('saveToy - toy', toy)
   return async (dispatch) => {
     const action = (toy._id) ? getActionUpdateToy(toy) : getActionAddToy(toy)
     console.log('saving')
     try {
       const savedToy = await toyService.save(toy)
-      dispatch(action)
+      // dispatch(action)
       showSuccessMsg(toy._id ? 'Updated toy' : 'Toy added')
       return savedToy
     } catch (err) {
@@ -57,29 +59,22 @@ export function saveToy(toy) { // Action Creator
   }
 }
 
-// export function editToy(toy) {
-//   return dispatch => {
-//     toyService.save(toy)
-//       .then(savedToy => {
-//         console.log('updated Toy:', savedToy);
-//         const action = {
-//           type: 'UPDATE_TOY',
-//           toy: savedToy
-//         }
-//         dispatch(action)
-//       })
-//   }
-// }
-
 export function deleteToy(toyId) {
-  return dispatch => {
-    toyService.remove(toyId)
-      .then(() => {
-        dispatch({
-          type: 'REMOVE_TOY',
-          toyId
-        })
-      })
-      .catch(err => console.error(err))
+  return async dispatch => {
+    dispatch(getActionRemoveToy(toyId))
+    try {
+      const res = await toyService.remove(toyId)
+      return res
+    } catch (err) {
+      try {
+        const toyToRenew = await toyService.getById(toyId)
+        dispatch(getActionAddToy(toyToRenew))
+      } catch (nestedErr) {
+        console.log(nestedErr)
+      }
+
+      console.log(err)
+      throw err
+    }
   }
 }

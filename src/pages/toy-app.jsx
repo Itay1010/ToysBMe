@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { ToyFilter } from "../cmps/toy-filter.jsx"
 import { ToyList } from "../cmps/toy-list.jsx"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 import { userService } from "../services/user.service.js"
 import { setFilter } from "../store/actions/filter.action.js"
 import { loadToys, deleteToy } from "../store/actions/toy.action.js"
@@ -23,6 +24,16 @@ class _ToyApp extends React.Component {
         this.props.loadToys()
     }
 
+    onDeleteToy = async (id) => {
+        try {
+            await this.props.deleteToy(id)
+            showSuccessMsg('Toy deleted')
+        } catch (err) {
+            console.error(err)
+            showErrorMsg('Cannot delete toy')
+        }
+    }
+
     render() {
         return <main>
             <ToyFilter onSetFilter={this.onSetFilter} />
@@ -30,7 +41,7 @@ class _ToyApp extends React.Component {
             <button onClick={ev => {
                 userService.logout()
             }}>Logout</button>
-            <ToyList toys={this.props.toys} deleteToy={this.props.deleteToy} />
+            <ToyList toys={this.props.toys} deleteToy={this.onDeleteToy} />
         </main>
     }
 }

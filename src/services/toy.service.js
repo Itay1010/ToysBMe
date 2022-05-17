@@ -45,7 +45,6 @@ function getEmptyToy() {
         name: 'Playstation',
         price: 1000,
         labels: ['video games', 'battery powered'],
-        createdAt: Date.now(),
         inStock: true
     }
 }

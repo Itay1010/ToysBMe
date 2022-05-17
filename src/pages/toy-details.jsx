@@ -2,11 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 import { toyService } from "../services/toy.service"
+import { userService } from "../services/user.service"
 
 export class _ToyDetails extends React.Component {
 
     state = {
-        toy: null
+        toy: null,
+        user: userService.getLoggedinUser()
     }
 
     componentDidMount() {
@@ -25,8 +27,9 @@ export class _ToyDetails extends React.Component {
 
 
     render() {
-        const { toy } = this.state
+        const { toy, user } = this.state
         const { history } = this.props
+        const isAdmin = user ? user.isAdmin : null
         if (!toy) return <h1>Loading...</h1>
         const { name, price, labels, inStock, _id, reviews } = toy
         return <main className="toy-details">
@@ -38,11 +41,13 @@ export class _ToyDetails extends React.Component {
                 <h2>In Stock: {inStock ? 'Yes' : 'No'}</h2>
                 <h2>Id: {_id}</h2>
             </section>
-            <section className="details-tools">
-                <Link className="btn" to={'/toy/edit/' + _id}>
-                    Edit
-                </Link>
-            </section>
+            {isAdmin &&
+                <section className="details-tools">
+                    <Link className="btn" to={'/toy/edit/' + _id}>
+                        Edit
+                    </Link>
+                </section>
+            }
             <hr />
             <h1>Reviews</h1>
             {/* <section className="review-container">
